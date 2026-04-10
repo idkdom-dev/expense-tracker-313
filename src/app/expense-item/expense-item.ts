@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ExpenseService } from '../expense-service';
+import { Expense } from '../expense';
 
 @Component({
   selector: 'app-expense-item',
@@ -7,4 +9,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './expense-item.html',
   styleUrl: './expense-item.css',
 })
-export class ExpenseItem {}
+export class ExpenseItem {
+  @Input() expenseId?: string;
+
+  constructor(private expenseService: ExpenseService) {}
+
+  get expense(): Expense | undefined {
+    return this.expenseId ? this.expenseService.getExpenseById(this.expenseId) : undefined;
+  }
+}

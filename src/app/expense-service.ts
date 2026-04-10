@@ -10,4 +10,12 @@ export class ExpenseService {
   getExpenseById(id: string) {
     return this.expenses().find((expense) => expense.id === id);
   }
+
+  addExpense(expense: Expense) {
+    this.expenses.update((list) => [...list, expense]);
+  }
+
+  removeExpense(id: string) {
+    this.expenses.update((list) => list.filter((e) => e.id !== id));
+  }
 }

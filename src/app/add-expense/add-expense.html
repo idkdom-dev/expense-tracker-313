@@ -2,18 +2,32 @@
   <h2 class="text-center mb-4">Add Expense</h2>
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card-body">
+      <form class="card-body" (ngSubmit)="addExpense()" #f="ngForm">
         <div class="mb-3">
           <label class="form-label">Expense Name</label>
-          <input type="text" class="form-control" placeholder="Enter expense name" />
+          <input
+            name="title"
+            [(ngModel)]="title"
+            required
+            type="text"
+            class="form-control"
+            placeholder="Enter expense name"
+          />
         </div>
         <div class="mb-3">
           <label class="form-label">Amount ($)</label>
-          <input type="number" class="form-control" placeholder="Enter amount" />
+          <input
+            name="amount"
+            [(ngModel)]="amount"
+            required
+            type="number"
+            class="form-control"
+            placeholder="Enter amount"
+          />
         </div>
         <div class="mb-3">
           <label class="form-label">Category</label>
-          <select class="form-select">
+          <select name="category" [(ngModel)]="category" required class="form-select">
             <option value disabled selected>Select category</option>
             <option value="School">School</option>
             <option value="Personal">Personal</option>
@@ -23,8 +37,8 @@
             <option value="Travel">Travel</option>
           </select>
         </div>
-        <a class="btn btn-primary" routerLink="view-expenses">Add Expense</a>
-      </div>
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+      </form>
     </div>
   </div>
 </div>
