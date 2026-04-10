@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ExpenseService } from '../expense-service';
@@ -15,10 +15,8 @@ export class AddExpense {
   amount: number | null = null;
   category: string = '';
 
-  constructor(
-    private expenseService: ExpenseService,
-    private router: Router,
-  ) {}
+  expenseService = inject(ExpenseService);
+  router = inject(Router);
 
   addExpense() {
     if (!this.title || this.amount === null || !this.category) return;

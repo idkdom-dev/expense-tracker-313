@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ExpenseService } from '../expense-service';
 import { Expense } from '../expense';
@@ -12,9 +12,14 @@ import { Expense } from '../expense';
 export class ExpenseItem {
   @Input() expenseId?: string;
 
-  constructor(private expenseService: ExpenseService) {}
+  expenseService = inject(ExpenseService);
 
-  get expense(): Expense | undefined {
-    return this.expenseId ? this.expenseService.getExpenseById(this.expenseId) : undefined;
+  expense = computed(() =>
+    this.expenseId ? this.expenseService.getExpenseById(this.expenseId) : undefined,
+  );
+
+  deleteExpense() {
+    if (!this.expenseId) return;
+    this.expenseService.removeExpense(this.expenseId);
   }
 }

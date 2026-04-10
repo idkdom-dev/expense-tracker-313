@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ExpenseItem } from '../expense-item/expense-item';
 import { ExpenseService } from '../expense-service';
@@ -10,5 +10,5 @@ import { ExpenseService } from '../expense-service';
   styleUrl: './expense-list.css',
 })
 export class ExpenseList {
-  constructor(public expenseService: ExpenseService) {}
+  expenseService = inject(ExpenseService);
 }

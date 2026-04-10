@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ExpenseService } from '../expense-service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ExpenseService } from '../expense-service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
-  constructor(public expenseService: ExpenseService) {}
+  expenseService = inject(ExpenseService);
 
   totalExpenses = computed(() => this.expenseService.expenses().reduce((s, e) => s + e.amount, 0));
 
